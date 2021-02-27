@@ -1,0 +1,23 @@
+{
+  "name": "mongo-media",
+  "version": "1.0.0",
+  "description": "Mongo Media is an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AidanGuarniere/Mongo-Media.git"
+  },
+  "author": "Aidan Guarniere",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AidanGuarniere/Mongo-Media/issues"
+  },
+  "homepage": "https://github.com/AidanGuarniere/Mongo-Media#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.18"
+  }
+}
