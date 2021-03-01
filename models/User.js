@@ -9,15 +9,6 @@ const UserSchema = new Schema(
       trim: true,
       required: "Please enter a unique username, it's required!",
     },
-    password: {
-      type: String,
-      trim: true,
-      required: "Please enter a password, it's required!",
-      match: [
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-        "Your password must be at least 8 characters long and contain at least one uppercase character, one lowercase character, and one number!",
-      ],
-    },
     email: {
       type: String,
       unique: true,

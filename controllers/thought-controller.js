@@ -1,14 +1,14 @@
 // requirements
-const { Thought } = require("../models");
+const { Thought, User } = require("../models");
 
 const thoughtController = {
   // create a Thought
   createThought({ params, body }, res) {
     Thought.create(body)
       .then(({ _id }) => {
-        // add comment to the appropriate Pizza subdocument
+        // add thought to the appropriate User subdocument
         return User.findOneAndUpdate(
-          { _id: params.UserId },
+          { _id: params.userId },
           { $push: { thoughts: _id } },
           { new: true }
         );

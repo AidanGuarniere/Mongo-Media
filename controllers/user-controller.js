@@ -1,12 +1,12 @@
 // requirements
-const {User} = require("../models");
+const { User } = require("../models");
 
 const userController = {
   // get all Users
   getAllUser(req, res) {
     User.find({})
-    .then(dbUserData => res.json(dbUserData))
-    .catch((err) => {
+      .then((dbUserData) => res.json(dbUserData))
+      .catch((err) => {
         console.log(err);
         res.status(400).json(err);
       });
@@ -15,10 +15,11 @@ const userController = {
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       // populate thoughts from Thought
-    //   .populate({
-    //     path: "thoughts",
-    //     select: "-__v",
-    //   })
+      .populate({
+        path: "thoughts",
+        select: "-__v",
+        select: "-_id"
+      })
       // show newest thought first
       .select("-__v")
       // sort in descending order by the _id value of thought
