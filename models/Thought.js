@@ -24,7 +24,7 @@ const reactionSchema = new Schema({
     get: (createdAtVal) => dateFormat(createdAtVal),
   },
 });
-const Reaction = model("reaction", reactionSchema);
+const Reaction = model("Reaction", reactionSchema);
 
 const thoughtSchema = new Schema(
   {
@@ -57,4 +57,4 @@ const thoughtSchema = new Schema(
 );
 const Thought = model("Thought", thoughtSchema);
 
-module.exports = { Thought };
+module.exports = { Thought, Reaction };
