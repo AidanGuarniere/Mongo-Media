@@ -27,9 +27,7 @@ const reactionSchema = new Schema(
 )
 const Reaction = model("reaction", reactionSchema);
 
-module.exports = reaction;
-
-const ThoughtSchema = new Schema(
+const thoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
@@ -51,6 +49,6 @@ const ThoughtSchema = new Schema(
           ],
     }
 )
-const Thought = model("Thought", ThoughtSchema);
+const Thought = model("Thought", thoughtSchema);
 
-module.exports = {Thought, Reaction};
+module.exports = {Thought};
