@@ -18,12 +18,10 @@ const userController = {
       .populate({
         path: "thoughts",
         select: "-__v",
-        select: "-_id"
       })
       // show newest thought first
       .select("-__v")
       // sort in descending order by the _id value of thought
-      .sort({ _id: -1 })
       .then((dbThoughtData) => res.json(dbThoughtData))
       .catch((err) => {
         console.log(err);

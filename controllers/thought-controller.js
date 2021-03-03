@@ -1,5 +1,5 @@
 // requirements
-const { Thought, User, Reaction } = require("../models");
+const { Thought, User } = require("../models");
 
 const thoughtController = {
   // create a Thought
@@ -23,22 +23,25 @@ const thoughtController = {
       })
       .catch((err) => res.json(err));
   },
-    // add Reaction
-    createReaction({ params, body }, res) {
-        Thought.findOneAndUpdate(
-          { _id: params.thoughtId },
-          { $push: { reactions: body } },
-          { new: true }
-        )
-          .then((dbUserData) => {
-            if (!dbUserData) {
-              res.status(404).json({ message: "No user found with this id!" });
-              return;
-            }
-            res.json(dbUserData);
-          })
-          .catch((err) => res.json(err));
-      },
+  // create Reaction
+  createReaction({ params, body }, res) {
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { $push: { reactions: body } },
+      { new: true }
+    )
+      .select("-id")
+      .then((dbUserData) => {
+        console.log(dbUserData);
+        if (!dbUserData) {
+          return res
+            .status(404)
+            .json({ message: "No user found with this id!" });
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => res.json(err));
+  },
   // remove thought
   deleteThought({ params }, res) {
     // find Thought by id and delete
@@ -65,16 +68,16 @@ const thoughtController = {
       })
       .catch((err) => res.json(err));
   },
-    // delete reaction
-    deleteReaction({ params }, res) {
-        Thought.findOneAndUpdate(
-          { _id: params.thoughtId },
-          { $pull: { reactions: { reactionId: params.reactionId } } },
-          { new: true },
-        )
-          .then((dbUserData) => res.json(dbUserData))
-          .catch((err) => res.json(err));
-      },
+  // delete reaction
+  deleteReaction({ params }, res) {
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { $pull: { reactions: { reactionId: params.reactionId } } },
+      { new: true }
+    )
+      .then((dbUserData) => res.json(dbUserData))
+      .catch((err) => res.json(err));
+  },
 };
 
-module.exports = thoughtController
+module.exports = thoughtController;
