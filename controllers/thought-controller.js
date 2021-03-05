@@ -2,6 +2,24 @@
 const { Thought, User } = require("../models");
 
 const thoughtController = {
+  // find all Thoughts
+  getAllThought(req, res) {
+    Thought.find({})
+      .then((dbThoughtData) => res.json(dbThoughtData))
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  },
+  // get one Thought by Id
+  getThoughtById({ params }, res) {
+    Thought.findOne({ _id: params.thoughtId })
+      .then((dbThoughtData) => res.json(dbThoughtData))
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  },
   // create a Thought
   createThought({ params, body }, res) {
     Thought.create(body)
@@ -16,8 +34,7 @@ const thoughtController = {
       // if User not found
       .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(404).json({ message: "No user found with this id!" });
-          return;
+          return res.status(404).json({ message: "No user found with this id!" });
         }
         res.json(dbUserData);
       })
@@ -61,7 +78,9 @@ const thoughtController = {
       .then((dbUserData) => {
         // if no User
         if (!dbUserData) {
-          return res.status(404).json({ message: "No User found with this id!" });
+          return res
+            .status(404)
+            .json({ message: "No User found with this id!" });
         }
         res.json(dbUserData);
       })
