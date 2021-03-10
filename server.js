@@ -12,7 +12,7 @@ app.use(express.static("public"));
 app.use(require("./routes"));
 
 // connect mongoose
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mongo-media-final", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mongo-media-db", {
   useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
