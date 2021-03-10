@@ -23,8 +23,6 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 - Mongoose.js
 - Express.js
 - Node.js
-- IndexedDB
-- service-workers
 
 ## Set Up
 ``` git clone git@github.com:AidanGuarniere/fantastic-umbrella.git ```
